@@ -9,7 +9,7 @@ void exec_cmd_fork(char *command)
 {
 	char *path;
 	pid_t pid = fork();
-	
+
 	if (pid == -1)
 	{
 		perror("Error:");
@@ -18,7 +18,7 @@ void exec_cmd_fork(char *command)
 
 	if (pid == 0)
 	{
-		path = get_path(void);
+		path = get_path();
 		exec_cmd(command, path);
 		free(path);
 		return;
@@ -35,7 +35,7 @@ void exec_cmd_fork(char *command)
  */
 void exec_interactive_shell(void)
 {
-	char* cmd = NULL;
+	char *cmd = NULL;
 	size_t n = 0;
 	ssize_t args;
 
@@ -56,7 +56,7 @@ void exec_interactive_shell(void)
 			else
 			{
 				perror("getline");
-				return
+				return;
 			}
 		}
 		cmd[_strcspn(cmd, "\n")] = '\0';
@@ -66,7 +66,7 @@ void exec_interactive_shell(void)
 		}
 		else if (_strcmp(cmd, "env") == 0)
 		{
-			print_env(void);
+			print_env();
 		}
 		else
 		{
@@ -76,44 +76,44 @@ void exec_interactive_shell(void)
 	free(cmd);
 }
 /**
- * exec_noninteractive_cmds -- executes non interactive 
+ * exec_noninteractive_cmds -- executes non interactive
  * @input_file: string
- * 
+ *
  * Return: void
  */
 void exec_noninteractive_cmds(char *input_file)
 {
-    FILE* file = fopen(input_file, "r");
-     char* line = NULL;
-    size_t n = 0;
-    ssize_t chars;
-    int line_number = 1;
-    char *path;
+	FILE *file = fopen(input_file, "r");
+	char *line = NULL;
+	size_t n = 0;
+	ssize_t chars;
+	int line_number = 1;
+	char *path;
 
-    if (file == NULL)
-    {
-        perror("Failed to open input file");
-        return;
-    }
-    while ((chars = getline(&line, &n, file)) != -1)
-    {
-        line[_strcspn(line, "\n")] = '\0';
-	_puts("Executing command:");
-    _puts(line);
-         path = get_path();
-        exec_cmd(line, path);
-        free(path);
-        line_number++;
-    }
-    free(line);
-    fclose(file);
+	if (file == NULL)
+	{
+		perror("Failed to open input file");
+		return;
+	}
+	while ((chars = getline(&line, &n, file)) != -1)
+	{
+		line[_strcspn(line, "\n")] = '\0';
+		_puts("Executing command:");
+		_puts(line);
+		path = get_path();
+		exec_cmd(line, path);
+		free(path);
+		line_number++;
+	}
+	free(line);
+	fclose(file);
 }
 /**
  * main -- main entry point
  * @ac: argument count
  * @argv: argument vector
  *
- * Return 0 success
+ * Return: 0 success
  */
 int main(int ac, char **argv)
 {
@@ -123,7 +123,7 @@ int main(int ac, char **argv)
 	}
 	else
 	{
-		exec_interactive_shell(void);
+		exec_interactive_shell();
 	}
 	return (0);
 }

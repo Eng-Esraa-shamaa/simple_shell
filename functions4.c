@@ -99,7 +99,7 @@ int exec_cmd(char *cmd, char *path)
 	}
 	else if (env_cmd_check(cmd))
 	{
-		print_env(void);
+		print_env();
 		return (0);
 	}
 	copy_tokenized_cmd(args, tokenized_cmd);

@@ -42,7 +42,7 @@ void reset_path_entry(char *path_entry, int *path_entry_len)
 char *append_path_entry(char *path_entry, char path_ch, int *path_entry_len)
 {
 	path_entry = _realloc(path_entry, (*path_entry_len + 1) * sizeof(char) + 1);
-	path_entry[*path_entry_len] = path_character;
+	path_entry[*path_entry_len] = path_ch;
 	path_entry[*path_entry_len + 1] = '\0';
 	(*path_entry_len)++;
 	return (path_entry);
