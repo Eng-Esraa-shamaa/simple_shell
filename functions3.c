@@ -7,7 +7,7 @@
  */
 void exec_executable(char **args)
 {
-	execve(args[0], args, NULL);
+	execve(args[0], args, environ);
 	perror("execve");
 }
 /**
