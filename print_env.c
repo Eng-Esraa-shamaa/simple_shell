@@ -11,9 +11,9 @@ char **env;
 size_t var_len = _strlen(var);
 char *env_entry;
 
-if (var == NULL || *var == '\0')
+if (var == NULL)
 {
-return (NULL);
+exit(1);
 }
 for (env = environ; *env != NULL; env++)
 {
