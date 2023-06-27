@@ -32,7 +32,7 @@ int exec_cmd_fork(char *command);
 
 /* interactive and non-interacive*/
 int exec_interactive_shell(void);
-void exec_noninteractive_cmds(char *input_file);
+int exec_noninteractive_cmds(char *input_file);
 /*main function */
 int main(int ac, char **argv);
 /* strings functions */
