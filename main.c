@@ -42,7 +42,8 @@ void exec_interactive_shell(void)
 
 	if (isatty(STDIN_FILENO))
 	{
-		_puts("$ "), fflush(stdout);
+		_puts("$ ");
+		fflush(stdout);
 	}
 	while (!should_exit)
 	{
