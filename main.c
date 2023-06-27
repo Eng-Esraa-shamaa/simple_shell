@@ -57,7 +57,7 @@ int exec_interactive_shell(void)
 			if (args == EOF)
 				break;
 			perror("getline");
-			return (0);
+			return (-1);
 		}
 		cmd[_strcspn(cmd, "\n")] = '\0';
 		if (_strcmp(cmd, "exit") == 0)
@@ -81,7 +81,7 @@ int exec_interactive_shell(void)
  *
  * Return: void
  */
-void exec_noninteractive_cmds(char *input_file)
+int exec_noninteractive_cmds(char *input_file)
 {
 	FILE *file = fopen(input_file, "r");
 	char *line = NULL;
@@ -89,11 +89,12 @@ void exec_noninteractive_cmds(char *input_file)
 	ssize_t chars;
 	int line_number = 1;
 	char *path;
+	int status = 0;
 
 	if (file == NULL)
 	{
 		perror("Failed to open input file");
-		return;
+		return (-1);
 	}
 	while ((chars = getline(&line, &n, file)) != -1)
 	{
@@ -107,6 +108,7 @@ void exec_noninteractive_cmds(char *input_file)
 	}
 	free(line);
 	fclose(file);
+	return (status);
 }
 /**
  * main -- main entry point
@@ -121,7 +123,7 @@ int main(int ac, char **argv)
 
 	if (ac == 2)
 	{
-		exec_noninteractive_cmds(argv[1]);
+		status =exec_noninteractive_cmds(argv[1]);
 	}
 	else
 	{
