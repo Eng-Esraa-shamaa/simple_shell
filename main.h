@@ -77,4 +77,11 @@ int _setenv(char *var, char *value, int overwrite);
 void set_exit_status(int status);
 int get_exit_status(void);
 
+/******cd- command******/
+void cd_cmd(char **args);
+int exec_builtin_or_exec(char **args, char *path);
+void execute_setenv(char **tokenized_cmd);
+void execute_unsetenv(char **tokenized_cmd);
+char *_strncpy(char *dest, char *src, int n);
+void cd_cmd(char **args);
 #endif

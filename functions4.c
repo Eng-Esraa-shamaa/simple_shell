@@ -87,36 +87,37 @@ void exec_cmds_path(char **args, char *path)
  * @path: path
  *
  * Return: int
- */
-int exec_cmd(char *cmd, char *path)
-{
-	char **tokenized_cmd = tokenize_cmd(cmd);
-	char *args[1024];
-
-if (exit_cmd_check(cmd))
-{
-return (0);
-}
-	else if (env_cmd_check(cmd))
-	{
-		print_env();
-		return (0);
-	}
-	copy_tokenized_cmd(args, tokenized_cmd);
-	if (executable_check(args[0]))
-	{
-		exec_executable(args);
-		return (0);
-	}
-	if (path == NULL)
-	{
-		path_ret_error();
-		return (1);
-	}
-
-	exec_cmds_path(args, path);
-	err_cmd_not_found(args[0]);
-	exec_cleanup(args);
-	return (1);
-}
-
+ *
+*
+* int exec_cmd(char *cmd, char *path)
+*{
+*	char **tokenized_cmd = tokenize_cmd(cmd);
+*	char *args[1024];
+*
+*if (exit_cmd_check(cmd))
+*{
+*return (0);
+*}
+*	else if (env_cmd_check(cmd))
+*	{
+*		print_env();
+*		return (0);
+*	}
+*	copy_tokenized_cmd(args, tokenized_cmd);
+*	if (executable_check(args[0]))
+*	{
+*		exec_executable(args);
+*		return (0);
+*	}
+*	if (path == NULL)
+*	{
+*		path_ret_error();
+*		return (1);
+*	}
+*
+*	exec_cmds_path(args, path);
+*	err_cmd_not_found(args[0]);
+*	exec_cleanup(args);
+*	return (1);
+*}
+*/
