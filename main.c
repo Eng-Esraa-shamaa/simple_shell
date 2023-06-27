@@ -52,7 +52,7 @@ if (args == -1)
 {
 if (args == EOF)
 {
-_putchar('\n');
+/*_putchar('\n');*/
 break;
 }
 else
@@ -99,8 +99,6 @@ void exec_noninteractive_cmds(char *input_file)
 	while ((chars = getline(&line, &n, file)) != -1)
 	{
 		line[_strcspn(line, "\n")] = '\0';
-		_puts("Executing command:");
-		_puts(line);
 		path = get_path();
 		exec_cmd(line, path);
 		free(path);

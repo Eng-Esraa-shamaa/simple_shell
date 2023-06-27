@@ -11,14 +11,14 @@ char **tokenize_cmd(char *cmd)
 	char **tokens = NULL;
 	int tokens_count = 0;
 	char *cmd_copy = _strdup(cmd);
-	char *token = _strtok(cmd_copy, delim);
+	char *token = strtok(cmd_copy, delim);
 
 	while (token != NULL)
 	{
 		tokens = _realloc(tokens, (tokens_count + 1) * sizeof(char *));
 		tokens[tokens_count] = _strdup(token);
 		tokens_count++;
-		token = _strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 
 	tokens = _realloc(tokens, (tokens_count + 1) * sizeof(char *));

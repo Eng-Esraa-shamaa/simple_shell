@@ -14,7 +14,7 @@ while (token != NULL)
 /*printf("%s\n", token);*/
 _puts(token);
 _putchar('\n');
-token = _strtok(NULL, ":");
+token = strtok(NULL, ":");
 }
 free(path_copy);
 }
@@ -29,7 +29,7 @@ Node *build_directory_ls(char *path)
 Node *head = NULL;
 Node *tail = NULL;
 char *path_copy = _strdup(path);
-char *token = _strtok(path_copy, ":");
+char *token = strtok(path_copy, ":");
 
 while (token != NULL)
 {
@@ -46,7 +46,7 @@ else
 tail->next = node;
 tail = node;
 }
-token = _strtok(NULL, ":");
+token = strtok(NULL, ":");
 }
 free(path_copy);
 return (head);
