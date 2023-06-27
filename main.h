@@ -50,6 +50,7 @@ char *_strtok(char *s, const char *deli);
 /*char* _strtok(char* str, const char* delims);*/
 int is_deli(char ch, const char *deli);
 int _strncmp(const char *str1, const char *str2, size_t n);
+char *_concat(char *s1, char *s2);
 
 /**
  * struct Node -- node containing directory
@@ -70,6 +71,8 @@ char *_getenv(char *varname);
 void print_env(void);
 size_t my_getline(char **lineptr, size_t *size, FILE *stream);
 char *mystrtok(char *s, char d);
+int _unsetenv(char *var);
+int _setenv(char *var, char *value, int overwrite);
 
 void set_exit_status(int status);
 int get_exit_status(void);
