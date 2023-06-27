@@ -35,45 +35,46 @@ void exec_cmd_fork(char *command)
  */
 void exec_interactive_shell(void)
 {
-	char *cmd = NULL;
-	size_t n = 0;
-	ssize_t args;
+char *cmd = NULL;
+size_t n = 0;
+ssize_t args;
+int should_exit = 0;
 
-	int should_exit = 0;
-
-	while (!should_exit)
-	{
-		_puts("$ ");
-		fflush(stdout);
-		args = getline(&cmd, &n, stdin);
-		if (args == -1)
-		{
-			if (args == EOF)
-			{
-				_putchar('\n');
-				break;
-			}
-			else
-			{
-				perror("getline");
-				return;
-			}
-		}
-		cmd[_strcspn(cmd, "\n")] = '\0';
-		if (_strcmp(cmd, "exit") == 0)
-		{
-			should_exit = 1;
-		}
-		else if (_strcmp(cmd, "env") == 0)
-		{
-			print_env();
-		}
-		else
-		{
-			exec_cmd_fork(cmd);
-		}
-	}
-	free(cmd);
+if (isatty(STDIN_FILENO))
+{
+_puts("$ ");
+fflush(stdout);
+}
+while (!should_exit)
+{
+args = getline(&cmd, &n, stdin);
+if (args == -1)
+{
+if (args == EOF)
+{
+_putchar('\n');
+break;
+}
+else
+{
+perror("getline");
+return;
+}
+}
+cmd[_strcspn(cmd, "\n")] = '\0';
+if (_strcmp(cmd, "exit") == 0)
+should_exit = 1;
+else if (_strcmp(cmd, "env") == 0)
+print_env();
+else
+exec_cmd_fork(cmd);
+if (isatty(STDIN_FILENO))
+{
+_puts("$ ");
+fflush(stdout);
+}
+}
+free(cmd);
 }
 /**
  * exec_noninteractive_cmds -- executes non interactive
