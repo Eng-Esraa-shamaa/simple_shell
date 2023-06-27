@@ -29,7 +29,7 @@ Node *build_directory_ls(char *path)
 Node *head = NULL;
 Node *tail = NULL;
 char *path_copy = _strdup(path);
-char *token = strtok(path_copy, ":");
+char *token = _strtok(path_copy, ":");
 
 while (token != NULL)
 {
@@ -46,7 +46,7 @@ else
 tail->next = node;
 tail = node;
 }
-token = strtok(NULL, ":");
+token = _strtok(NULL, ":");
 }
 free(path_copy);
 return (head);
