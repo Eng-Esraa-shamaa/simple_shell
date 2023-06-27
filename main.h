@@ -28,10 +28,10 @@ void exec_cleanup(char **args);
 char *prepare_path_entry(char *path_entry, int path_entry_len, char *command);
 int exec_path_ent(char *path_entry, char **args);
 void exec_cmds_path(char **args, char *path);
-void exec_cmd_fork(char *command);
+int exec_cmd_fork(char *command);
 
 /* interactive and non-interacive*/
-void exec_interactive_shell(void);
+int exec_interactive_shell(void);
 void exec_noninteractive_cmds(char *input_file);
 /*main function */
 int main(int ac, char **argv);

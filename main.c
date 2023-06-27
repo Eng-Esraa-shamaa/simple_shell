@@ -5,15 +5,16 @@
  *
  * Return void
  */
-void exec_cmd_fork(char *command)
+int exec_cmd_fork(char *command)
 {
 	char *path;
 	pid_t pid = fork();
+	int i = 0;
 
 	if (pid == -1)
 	{
 		perror("Error:");
-		return;
+		return (-1);
 	}
 
 	if (pid == 0)
@@ -21,24 +22,27 @@ void exec_cmd_fork(char *command)
 		path = get_path();
 		exec_cmd(command, path);
 		free(path);
-		return;
+		return (0);
 	}
 	else
 	{
-		wait(NULL);
+		wait(&i);
 	}
+
+	return(i);
 }
 /**
  * exec_interactive_shell -- executes interactive shell
  *
  * Return: void
  */
-void exec_interactive_shell(void)
+int exec_interactive_shell(void)
 {
 	char *cmd = NULL;
 	size_t n = 0;
 	ssize_t args;
 	int should_exit = 0;
+	int status = 0;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -53,7 +57,7 @@ void exec_interactive_shell(void)
 			if (args == EOF)
 				break;
 			perror("getline");
-			return;
+			return (0);
 		}
 		cmd[_strcspn(cmd, "\n")] = '\0';
 		if (_strcmp(cmd, "exit") == 0)
@@ -61,7 +65,7 @@ void exec_interactive_shell(void)
 		else if (_strcmp(cmd, "env") == 0)
 			print_env();
 		else
-			exec_cmd_fork(cmd);
+			status = exec_cmd_fork(cmd);
 		if (isatty(STDIN_FILENO))
 		{
 			_puts("$ ");
@@ -69,7 +73,7 @@ void exec_interactive_shell(void)
 		}
 	}
 	free(cmd);
-	exit(0);
+	return(status);
 }
 /**
  * exec_noninteractive_cmds -- executes non interactive
@@ -113,13 +117,15 @@ void exec_noninteractive_cmds(char *input_file)
  */
 int main(int ac, char **argv)
 {
+	int status = 0;
+
 	if (ac == 2)
 	{
 		exec_noninteractive_cmds(argv[1]);
 	}
 	else
 	{
-		exec_interactive_shell();
+		status = exec_interactive_shell();
 	}
-	return (0);
+	return (status);
 }
