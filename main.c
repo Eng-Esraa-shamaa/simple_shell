@@ -42,7 +42,8 @@ void exec_interactive_shell(void)
 
 	if (isatty(STDIN_FILENO))
 	{
-		_puts("$ "), fflush(stdout);
+		_puts("$ ");
+		fflush(stdout);
 	}
 	while (!should_exit)
 	{
@@ -92,6 +93,8 @@ void exec_noninteractive_cmds(char *input_file)
 	}
 	while ((chars = getline(&line, &n, file)) != -1)
 	{
+		/*if (chars == 1 && line[0] == '\n')*/
+		/*continue;*/
 		line[_strcspn(line, "\n")] = '\0';
 		path = get_path();
 		exec_cmd(line, path);

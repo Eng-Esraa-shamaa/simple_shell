@@ -84,5 +84,4 @@ void execute_setenv(char **tokenized_cmd);
 void execute_unsetenv(char **tokenized_cmd);
 char *_strncpy(char *dest, char *src, int n);
 void cd_cmd(char **args);
-int _atoi(const char *s);
 #endif
