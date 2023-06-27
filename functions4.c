@@ -92,11 +92,16 @@ int exec_cmd(char *cmd, char *path)
 {
 	char **tokenized_cmd = tokenize_cmd(cmd);
 	char *args[1024];
+	int exit_status = 0;
 
-	if (exit_cmd_check(cmd))
-	{
-		return (1);
-	}
+if (exit_cmd_check(cmd))
+{
+if (tokenized_cmd[1] != NULL)
+exit_status = atoi(tokenized_cmd[1]);
+exec_cleanup(tokenized_cmd);
+exit(exit_status);
+/*return (1);*/
+}
 	else if (env_cmd_check(cmd))
 	{
 		print_env();
