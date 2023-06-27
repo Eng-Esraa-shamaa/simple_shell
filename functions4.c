@@ -95,7 +95,7 @@ int exec_cmd(char *cmd, char *path)
 
 if (exit_cmd_check(cmd))
 {
-return (1);
+return (0);
 }
 	else if (env_cmd_check(cmd))
 	{
