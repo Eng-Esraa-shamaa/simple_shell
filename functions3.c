@@ -58,4 +58,5 @@ void err_cmd_not_found(char *command)
 	write(STDERR_FILENO, command, _strlen(command));
 	write(STDERR_FILENO, ": command not found", 19);
 	write(STDERR_FILENO, "\n", 1);
+	exit(1);
 }
