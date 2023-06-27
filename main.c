@@ -75,6 +75,7 @@ fflush(stdout);
 }
 }
 free(cmd);
+exit(0);
 }
 /**
  * exec_noninteractive_cmds -- executes non interactive
