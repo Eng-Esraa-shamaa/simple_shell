@@ -33,7 +33,6 @@ char *str_concat(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strtok(char *str, char delim);
 int _strncmp(const char *str1, const char *str2, size_t n);
-
 char *_get_env(const char *var);
 char *get_path(char *file_name);
 char *_strncpy(char *dest, char *src, int n);
