@@ -43,7 +43,6 @@ char **tokenize(char *str, int bin);
 char *addTilde(char *path);
 char *_search_remove(char *str);
 char *_clear_buf(char *str, int sum);
-
 int _check_ch(char *str);
 int exists(char *path);
 int _atoi(char *s);
