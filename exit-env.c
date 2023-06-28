@@ -36,5 +36,3 @@ int _check_env(char *str)
 	free(copy);
 	return (0);
 }
-
-

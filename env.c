@@ -26,7 +26,7 @@ char *_get_env(const char *var)
 
 	if (var == NULL)
 		exit(1);
-	for (n = 0; environ[n] != NULL; n++)
+	for (; environ[n] != NULL; n++)
 	{
 		copy = _strdup(environ[n]);
 		token = _strtok(copy, '=');

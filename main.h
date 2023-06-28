@@ -43,13 +43,13 @@ char **tokenize(char *str, int bin);
 char *addTilde(char *path);
 char *_search_remove(char *str);
 char *_clear_buf(char *str, int sum);
-char *_check_com(char *str);
+
 int _check_ch(char *str);
 int exists(char *path);
 int _set_env(char *var, char *val, int ow);
 int _check_unset(char *str);
 int _check_set_env(char *str);
-int _check_help(char *str);
+
 int _unset_env(char *var);
 int _atoi(char *s);
 int _check_cd(char *str);

@@ -39,7 +39,5 @@ int _check_bin(char *str)
 		return (1);
 	if (_check_env(str) == 1)
 		return (3);
-	if (_check_help(str) == 1)
-		return (6);
 	return (0);
 }
