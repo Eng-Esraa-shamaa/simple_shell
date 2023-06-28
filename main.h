@@ -46,13 +46,7 @@ char *_clear_buf(char *str, int sum);
 
 int _check_ch(char *str);
 int exists(char *path);
-int _set_env(char *var, char *val, int ow);
-int _check_unset(char *str);
-int _check_set_env(char *str);
-
-int _unset_env(char *var);
 int _atoi(char *s);
-int _check_cd(char *str);
 int args(char *str);
 int _check_bin(char *str);
 int _child_fork(pid_t child_pid, char *pro);
@@ -65,7 +59,6 @@ int _check_exit(char *str);
 int checkRoute(char *str);
 int _get_ret(char *str);
 void free_buff_env(char *str);
-void _help_case(char *var);
 void free_env(char *var);
 void _sh(int sn);
 void _check_isatty_sig(void);
